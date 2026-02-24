@@ -13,12 +13,19 @@
   <!-- Top Toast -->
   <div id="toast" class="toast hidden" role="status" aria-live="polite">
     <div class="toast-inner">
-      <div id="toastSpinner" class="toast-spinner" aria-hidden="true"></div>
+      
+      <!-- 아이콘 영역 -->
+      <div id="toastIcon" class="toast-icon hidden"></div>
+
+      <!-- 로딩 스피너 -->
+      <div id="toastSpinner" class="toast-spinner hidden"></div>
+
       <div class="toast-text">
         <div id="toastTitle" class="toast-title">제출 중...</div>
         <div id="toastMsg" class="toast-msg">잠시만 기다려 주세요.</div>
       </div>
-      <button id="toastClose" class="toast-close hidden" type="button" aria-label="닫기">×</button>
+
+      <button id="toastClose" class="toast-close hidden" type="button">×</button>
     </div>
   </div>
   

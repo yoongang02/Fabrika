@@ -18,19 +18,46 @@ const toastSpinner = document.getElementById("toastSpinner");
 const toastTitle = document.getElementById("toastTitle");
 const toastMsg = document.getElementById("toastMsg");
 const toastClose = document.getElementById("toastClose");
+const toastIcon = document.getElementById("toastIcon");
+
+// SVG 아이콘 정의
+const ICONS = {
+  success: `
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/>
+    </svg>
+  `,
+  error: `
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/>
+    </svg>
+  `
+};
 
 let toastTimer = null;
 
 function showToast({ title, msg = "", loading = false, type = "default", closable = false, autoHideMs = 0 }) {
-  // type: default | success | error
+
   toast.classList.remove("hidden", "success", "error");
-  if (type === "success") toast.classList.add("success");
-  if (type === "error") toast.classList.add("error");
 
   toastTitle.textContent = title || "";
   toastMsg.textContent = msg || "";
 
-  toastSpinner.style.display = loading ? "block" : "none";
+  // 기본 초기화
+  toastIcon.classList.add("hidden");
+  toastSpinner.classList.add("hidden");
+
+  if (loading) {
+    toastSpinner.classList.remove("hidden");
+  } else if (type === "success") {
+    toast.classList.add("success");
+    toastIcon.innerHTML = ICONS.success;
+    toastIcon.classList.remove("hidden");
+  } else if (type === "error") {
+    toast.classList.add("error");
+    toastIcon.innerHTML = ICONS.error;
+    toastIcon.classList.remove("hidden");
+  }
 
   toastClose.classList.toggle("hidden", !closable);
 
