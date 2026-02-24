@@ -28,6 +28,8 @@ body {
 .card {
   width: 100%;
   max-width: 720px;
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -47,9 +49,9 @@ body {
   font-size: 14px;
 }
 
-.form { display: grid; gap: 14px; }
+.form { display: grid; gap: 10px; padding-bottom: 10px; }
 
-.field { display: grid; gap: 8px; }
+.field { display: grid; gap: 6px; }
 label { font-weight: 700; font-size: 14px; }
 .req { color: #ef4444; margin-left: 4px; }
 
@@ -57,14 +59,14 @@ input, textarea {
   width: 100%;
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 14px 14px;
+  padding: 12px 12px;
   font-size: 16px;
   outline: none;
   background: #fff;
 }
 
 input[readonly] { background: #f9fafb; }
-textarea { resize: vertical; min-height: 100px; }
+textarea { resize: vertical; min-height: 72px; }
 
 .row {
   display: grid;
@@ -96,6 +98,11 @@ textarea { resize: vertical; min-height: 100px; }
   padding: 16px 18px;
   border-radius: 18px;
   font-size: 16px;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  margin-top: 6px;
+  z-index: 5;
 }
 
 .btn:disabled {
