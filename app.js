@@ -13,6 +13,45 @@ const elAddress = document.getElementById("address");
 const elDetail = document.getElementById("detailAddress");
 const elMemo = document.getElementById("memo");
 
+// Toast elements
+const toast = document.getElementById("toast");
+const toastSpinner = document.getElementById("toastSpinner");
+const toastTitle = document.getElementById("toastTitle");
+const toastMsg = document.getElementById("toastMsg");
+const toastClose = document.getElementById("toastClose");
+
+let toastTimer = null;
+
+function showToast({ title, msg = "", loading = false, type = "default", closable = false, autoHideMs = 0 }) {
+  // type: default | success | error
+  toast.classList.remove("hidden", "success", "error");
+  if (type === "success") toast.classList.add("success");
+  if (type === "error") toast.classList.add("error");
+
+  toastTitle.textContent = title || "";
+  toastMsg.textContent = msg || "";
+
+  toastSpinner.style.display = loading ? "block" : "none";
+
+  toastClose.classList.toggle("hidden", !closable);
+
+  if (toastTimer) clearTimeout(toastTimer);
+  if (autoHideMs && autoHideMs > 0) {
+    toastTimer = setTimeout(hideToast, autoHideMs);
+  }
+}
+
+function hideToast() {
+  toast.classList.add("hidden");
+  toast.classList.remove("success", "error");
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
+}
+
+toastClose.addEventListener("click", hideToast);
+
 function setStatus(msg) {
   statusEl.textContent = msg || "";
 }
@@ -55,7 +94,7 @@ form.addEventListener("submit", async (e) => {
 
   const err = validate();
   if (err) {
-    setStatus(err);
+    showToast({ title: "입력 확인", msg: err, loading: false, type: "error", closable: true });
     return;
   }
 
@@ -66,7 +105,8 @@ form.addEventListener("submit", async (e) => {
 
   btnSubmit.disabled = true;
   btnSearch.disabled = true;
-  setStatus("제출 중...");
+
+  showToast({ title: "제출 중...", msg: "잠시만 기다려 주세요.", loading: true, type: "default", closable: false });
 
   const payload = {
     name: elName.value.trim(),
@@ -90,10 +130,10 @@ form.addEventListener("submit", async (e) => {
     // 여기서는 단순히 성공 문자열을 기준으로 처리
     if (!res.ok) throw new Error(text || "서버 응답 오류");
 
-    setStatus("제출이 완료되었습니다.");
+    showToast({ title: "제출이 완료되었습니다.", msg: "감사합니다!", loading: false, type: "success", closable: false, autoHideMs: 1400 });
     form.reset();
   } catch (error) {
-    setStatus("제출에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+    showToast({ title: "제출에 실패했습니다.", msg: "잠시 후 다시 시도해 주세요.", loading: false, type: "error", closable: true });
     console.error(error);
   } finally {
     btnSubmit.disabled = false;

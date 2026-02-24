@@ -116,6 +116,71 @@ textarea { resize: vertical; min-height: 72px; }
   color: var(--muted);
 }
 
+/* Top Toast */
+.toast{
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, calc(100% - 24px));
+  z-index: 9999;
+}
+
+.toast.hidden{ display:none; }
+
+.toast-inner{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.toast-spinner{
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 3px solid rgba(0,0,0,0.15);
+  border-top-color: rgba(0,0,0,0.75);
+  animation: toastSpin 0.9s linear infinite;
+  flex: 0 0 auto;
+}
+
+@keyframes toastSpin { to { transform: rotate(360deg); } }
+
+.toast-text{ min-width: 0; }
+.toast-title{
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.toast-msg{
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.toast-close{
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+.toast-close.hidden{ display:none; }
+
+/* 상태별(선택): 성공/오류 시 제목색 */
+.toast.success .toast-title{ color: #166534; }
+.toast.error .toast-title{ color: #b91c1c; }
+
 /* 모바일 최적화 */
 @media (max-width: 420px) {
   .card { padding: 18px; border-radius: 16px; }
