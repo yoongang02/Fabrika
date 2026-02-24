@@ -177,32 +177,6 @@ textarea { resize: vertical; min-height: 72px; }
 }
 .toast-close.hidden{ display:none; }
 
-.toast-icon{
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
-}
-
-.toast-icon svg{
-  width: 16px;
-  height: 16px;
-  fill: white;
-}
-
-/* 성공 */
-.toast.success .toast-icon{
-  background-color: #16a34a; /* 초록 */
-}
-
-/* 오류 */
-.toast.error .toast-icon{
-  background-color: #dc2626; /* 빨강 */
-}
-
 /* 상태별(선택): 성공/오류 시 제목색 */
 .toast.success .toast-title{ color: #166534; }
 .toast.error .toast-title{ color: #b91c1c; }
