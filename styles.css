@@ -1,0 +1,118 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --btn: #111111;
+  --btnText: #ffffff;
+  --radius: 18px;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 720px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.title {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.desc {
+  margin: 0 0 18px 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.form { display: grid; gap: 14px; }
+
+.field { display: grid; gap: 8px; }
+label { font-weight: 700; font-size: 14px; }
+.req { color: #ef4444; margin-left: 4px; }
+
+input, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 14px;
+  font-size: 16px;
+  outline: none;
+  background: #fff;
+}
+
+input[readonly] { background: #f9fafb; }
+textarea { resize: vertical; min-height: 100px; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+.btn {
+  border: none;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #2b2b2b;
+  color: var(--btnText);
+  white-space: nowrap;
+}
+
+.btn.primary {
+  background: var(--btn);
+  padding: 16px 18px;
+  border-radius: 18px;
+  font-size: 16px;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* 모바일 최적화 */
+@media (max-width: 420px) {
+  .card { padding: 18px; border-radius: 16px; }
+  .title { font-size: 24px; }
+  input, textarea, .btn { border-radius: 12px; }
+  .btn.primary { border-radius: 16px; }
+}

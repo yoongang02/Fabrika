@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>배송지 입력</title>
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- 다음(카카오) 우편번호 서비스 -->
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<body>
+  <main class="page">
+    <section class="card" aria-label="배송지 입력">
+      <h1 class="title">배송지 입력</h1>
+
+      <form id="form" class="form">
+        <div class="field">
+          <label for="name">이름 <span class="req">*</span></label>
+          <input id="name" name="name" type="text" placeholder="이름" required />
+        </div>
+
+        <div class="field">
+          <label for="phone">전화번호 <span class="req">*</span></label>
+          <input id="phone" name="phone" type="tel" inputmode="numeric"
+                 placeholder="01012345678" required />
+          <small class="hint">하이픈 없이 입력 권장 (예: 01012345678)</small>
+        </div>
+
+        <div class="field">
+          <label>우편번호 / 주소 <span class="req">*</span></label>
+
+          <div class="row">
+            <input id="zonecode" name="zonecode" type="text" placeholder="우편번호" readonly required />
+            <button id="btnSearch" type="button" class="btn">주소검색</button>
+          </div>
+
+          <input id="address" name="address" type="text" placeholder="주소" readonly required />
+        </div>
+
+        <div class="field">
+          <label for="detailAddress">상세주소</label>
+          <input id="detailAddress" name="detailAddress" type="text" placeholder="동/호수 등 (선택)" />
+        </div>
+
+        <div class="field">
+          <label for="memo">비고</label>
+          <textarea id="memo" name="memo" rows="4" placeholder="문앞, 경비실 등 (선택)"></textarea>
+        </div>
+
+        <button id="btnSubmit" class="btn primary" type="submit">
+          제출하기
+        </button>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
