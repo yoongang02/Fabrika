@@ -2,7 +2,6 @@
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5b4QC4bT9YeqRkqq2ZX9rg3mrO98oBRGwn6aZEy80Tj9Xf7hVk1e2rGYEVMwEl_4C0Q/exec";
 
 const form = document.getElementById("form");
-const statusEl = document.getElementById("status");
 const btnSubmit = document.getElementById("btnSubmit");
 const btnSearch = document.getElementById("btnSearch");
 
@@ -52,9 +51,6 @@ function hideToast() {
 
 toastClose.addEventListener("click", hideToast);
 
-function setStatus(msg) {
-  statusEl.textContent = msg || "";
-}
 
 function normalizePhone(raw) {
   // 숫자만 남김
@@ -90,7 +86,6 @@ btnSearch.addEventListener("click", () => {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  setStatus("");
 
   const err = validate();
   if (err) {
@@ -99,7 +94,6 @@ form.addEventListener("submit", async (e) => {
   }
 
   if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.includes("PASTE_YOUR_WEBAPP_URL_HERE")) {
-    setStatus("설정 오류: GOOGLE_SCRIPT_URL이 비어 있습니다.");
     return;
   }
 
