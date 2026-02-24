@@ -1,5 +1,5 @@
 // 1) 여기 URL을 "Google Apps Script 웹앱 URL"로 교체하세요.
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzrnlzmlupzYMOAMhL4uV24Del1GeHNVN09QyT42EoSA4m2wZQF0hn3C4DzxP36YnXPLg/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx5b4QC4bT9YeqRkqq2ZX9rg3mrO98oBRGwn6aZEy80Tj9Xf7hVk1e2rGYEVMwEl_4C0Q/exec";
 
 const form = document.getElementById("form");
 const statusEl = document.getElementById("status");
